@@ -27,7 +27,7 @@ public class Empleado {
         this.puesto = puesto;
         this.salario = salario;
         totalEmpleados++;             // ambos constructores incrementan el total
-        // opcional: mantener nextId coherente si pasan un id manual mayor
+        // si el ID ingresado es mayor al actual, se actualiza el siguiente ID disponible
         if (id >= nextId) nextId = id + 1;
     }
 
@@ -36,21 +36,22 @@ public class Empleado {
         this.id = nextId++;           // id automático
         this.nombre = nombre;
         this.puesto = puesto;
-        this.salario = 300000.0;      // salario por defecto (ajustá si querés)
-        totalEmpleados++;
+        this.salario = 300000.0;      // salario por defecto
+        totalEmpleados++; // suma al total de empleados
     }
 
     // Métodos sobrecargados para actualizar salario
+    // Opción 1: aumento por porcentaje
     public void actualizarSalario(double porcentajeAumento) {
         // ejemplo: 10.0 => 10%
         this.salario += this.salario * (porcentajeAumento / 100.0);
     }
-
+    // Opción 2: aumento por monto fijo
     public void actualizarSalario(int montoFijo) {
         this.salario += montoFijo;
     }
 
-    // Getters y Setters (encapsulamiento)
+    // Getters y Setters (permiten acceder y modificar los atributos de forma controlada)
     public int getId() { return id; }
     public String getNombre() { return nombre; }
     public String getPuesto() { return puesto; }
@@ -60,18 +61,25 @@ public class Empleado {
     public void setPuesto(String puesto) { this.puesto = puesto; }
     public void setSalario(double salario) { this.salario = salario; }
 
-    // Método estático requerido
+    // Método estático requerido:  muestra cuántos empleados se han creado en total
     public static int mostrarTotalEmpleados() {
         return totalEmpleados;
     }
 
-    // Representación legible
+    // Representación legible (//️toString(): muestra la información del objeto en formato legible)
     @Override
     public String toString() {
+        // Formatea el salario con separador de miles y dos decimales
+        String salarioFmt = String.format(
+            java.util.Locale.forLanguageTag("es-AR"),
+            "%,.2f", salario
+        );
+        
         return "Empleado { id=" + id +
                ", nombre='" + nombre + '\'' +
                ", puesto='" + puesto + '\'' +
                ", salario=" + String.format("%.2f", salario) +
                " }";
+        
     }
 }
