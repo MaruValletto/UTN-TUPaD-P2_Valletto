@@ -9,6 +9,7 @@ package tu.paquete;
  *
  * @author vallett
  */
+// Clase de prueba: contiene el método main() y ejecuta las acciones sobre los objetos Empleado.
 public class Main {
     public static void main(String[] args) {
 
@@ -18,19 +19,30 @@ public class Main {
 
         // Instancia con constructor completo
         Empleado e3 = new Empleado(100, "Carla Ruiz", "Líder Técnico", 550000.0);
-
-        // Aumentos: porcentaje y monto fijo
-        e1.actualizarSalario(10.0);    // +10%
-        e2.actualizarSalario(50000);   // +$50.000
-        e3.actualizarSalario(7.5);     // +7.5%
-
-        // Impresión legible
+        
+        //Imprimir el estado inicial de cada empleado
+        System.out.println("=== Estado inicial ===");
         System.out.println(e1);
         System.out.println(e2);
         System.out.println(e3);
 
-        // Total de empleados
-        System.out.println("Total empleados: " + Empleado.mostrarTotalEmpleados());
+
+        // Aplicar actualizaciones de salario con las dos versiones del método sobrecargado
+        e1.actualizarSalario(10.0);    // +10%
+        e2.actualizarSalario(50000);   // +$50.000
+        e3.actualizarSalario(7.5);     // +7.5%
+
+         // Imprimir el estado luego de actualizar los salarios
+        System.out.println("\n=== Después de actualizar ===");
+        System.out.println("Aplicado a e1: +10%");
+        System.out.println(e1);
+        System.out.println("Aplicado a e2: +$50.000");
+        System.out.println(e2);
+        System.out.println("Aplicado a e3: +7,5%");
+        System.out.println(e3);
+        
+        // Total de empleados (método estático)
+        System.out.println("Total empleados: " + Empleado.mostrarTotalEmpleados());   
     }
 }
 
